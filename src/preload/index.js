@@ -1,4 +1,4 @@
-import { contextBridge } from 'electron'
+import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
 
 // Custom APIs for renderer
@@ -11,6 +11,11 @@ if (process.contextIsolated) {
   try {
     contextBridge.exposeInMainWorld('electron', electronAPI)
     contextBridge.exposeInMainWorld('api', api)
+    contextBridge.exposeInMainWorld('context', {
+      storeGet: (key) => ipcRenderer.invoke('store-get', key),
+      storeSet: (key, value) => ipcRenderer.invoke('store-set', key, value),
+      startStream: (cameraIp) => ipcRenderer.invoke('start-stream', cameraIp)
+    })
   } catch (error) {
     console.error(error)
   }

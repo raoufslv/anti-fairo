@@ -8,6 +8,19 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:"
     />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self';style-src 'self' 'unsafe-inline';img-src 'self' data:;worker-src blob:;"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self';style-src 'self' 'unsafe-inline';img-src 'self' data:;worker-src blob:;"
+    />
+    <!-- adjust CSP for default-src 'self -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; worker-src blob:;"
+    />
   </head>
 
   <body>
